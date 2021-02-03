@@ -10,8 +10,10 @@ import _ from '../Utility'
 import HomeComponent from '../components/Root/Container/HomeContainer'
 import { useEffect } from 'react';
 import * as Actions from '../actions'
+import { useRouter } from 'next/router';
 
 const Index = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const {homeData, isLoading} = useSelector((state : RootState) => ({
     homeData : state.homeData,
@@ -20,6 +22,24 @@ const Index = () => {
     if(_.compareObj(left, right)) return true;
     return false;
   });
+
+  // 유저정보창에서 새로고침 시, 404파일에서는 루트로 보내주고, 루트에서 주소가 기본이아니라면
+  // 바로이동
+  if(
+    typeof window !== 'undefined' &&
+    router.asPath !== '/'
+  ){
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+
+        router.push(decoded + l.hash)
+      }
+    }(window.location))
+    return null;
+  }
 
   // 이유는 모르겠는데, SetHomeData할 때 로딩토글 같이꺼주니깐 로딩토글이 한템포 먼저꺼짐
   // 그래서, 돔 완성되고 꺼지도록 함

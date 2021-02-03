@@ -13,7 +13,7 @@ interface Props {
 const Layout : React.FC<Props> = ({
   children,
   title,
-  isLoading
+  isLoading,
 }) => {
   const isLoadingStyle1 = isLoading ? 'height100vh' : null;
   const isLoadingStyle2 = isLoading ? 'loadingBg zIndex99' : 'displayNone';

@@ -11,7 +11,7 @@ const UserInfoRoute = () => {
   const isLoading = useSelector((state : RootState) => state.isLoading);
 
   // 자꾸 서버에서도 작동되는것 같아, 서버환경이라면 미작동으로 함
-  if(!typeof window) return null;
+  if(typeof window === 'undefined') return null;
 
   return (
     <>
