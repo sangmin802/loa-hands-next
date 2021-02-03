@@ -1,0 +1,431 @@
+.userInfo {
+  border-radius : var(--contBox-border-radius);
+}
+.userInfoTopCetnerWrap {
+  background: url('//cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/bg/bg_profile_equipment.png?532ac3d83cbb2a28de08e2567cb4859b=');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding : 1rem;
+  border-radius : var(--contBox-border-radius);
+}
+/* userInfoTop */
+.userInfoTop {
+  position : relative;
+  width : 100%;
+}
+.showExpeditionWrap {
+  float : right;
+  background : var(--bgDeep);
+  padding : .3rem;
+  border-radius : var(--contBox-border-radius);
+  cursor : pointer;
+  border : var(--contBox-border);
+}
+.userInfoBox {
+  background : var(--bgDeep);
+  padding : .5rem;
+  border-radius : var(--contBox-border-radius);
+  border : var(--contBox-border);
+}
+.userClass {
+  width : fit-content;
+  display : flex;
+  align-items : center;
+  margin-bottom : .3rem;
+}
+.userNameNLvNServer, .userItemLv, .userExtraInfo {
+  display : flex;
+  width : 100%;
+  align-items : center;
+  margin-bottom : .3rem;
+}
+.userExtraInfo {
+  flex-wrap : wrap;
+}
+.userClassEmb {
+  width : 41px;
+  margin-right : .3rem;
+}
+.userLvNname {
+  margin-right : .3rem;
+  max-width : 60%;
+}
+.curUserItemLv {
+  margin-right : .3rem;
+}
+.userExtraInfo > div {
+  display : flex;
+  margin-right : .3rem;
+  width : fit-content;
+  overflow : hidden;
+}
+.userExtraInfo > div:nth-child(2n) {
+  margin-right : 0;
+}
+.userInfoBox {
+  text-align : center;
+}
+.userInfoTitle {
+  margin-bottom : .3rem;
+}
+.userExtraInfo .userInfoTitle {
+  margin-bottom : 0;
+  margin-right : .7rem;
+}
+.searchedUserExpedition {
+  position : absolute;
+  display : none;
+  width : 85%;
+  top : 0;
+  right : 0;
+  background : var(--bgDeep);
+  padding : 1.5rem;
+  max-height : 600px;
+  border-radius : var(--contBox-border-radius);
+  overflow-y : scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.searchedUserExpedition::-webkit-scrollbar {
+  display: none;
+}
+.searchedUserExpeditionClose {
+  float : right;
+  cursor : pointer;
+}
+.userExpedition {
+  margin-bottom : 1rem;
+}
+.userExpeditionServer {
+  font-weight : bold;
+  margin-bottom : 1rem;
+}
+.userExpeditionCharWrap {
+  display : flex;
+  flex-wrap : wrap;
+}
+.userExpeditionChar {
+  width : 50%;
+  margin-bottom : .5rem;
+  padding : .5rem;
+  border-radius : var(--contBox-border-radius);
+  cursor : pointer;
+}
+.userExpeditionChar:hover {
+  background : var(--bgLow);
+}
+.userInfoCollection {
+  display : flex;
+}
+.collectionMini {
+  display : flex;
+  flex-grow : 1;
+}
+.collectionMiniBg {
+  width : 20px;
+  height : 24px;
+  background : url('https://github.com/sangmin802/loa-hands/blob/master/public/img/all.png?raw=true');
+  background-size: 1250px 1209px;
+  margin-right : .3rem;
+}
+.collectionMiniSize {
+  line-height : 24px;
+}
+/* userInfoCenter */
+.userInfoCenter {
+  display : flex;
+  align-items : center;
+  margin-top : 2rem;
+}
+.userClassImg {
+  width : 70%;
+  height : fit-content;
+  margin : 0 auto;
+}
+.userClassImg img {
+  display : block;
+  width : 100%;
+}
+.equipImgWrap {
+  width : 10%;
+  min-width : 34px;
+}
+.equipImgWrap .EquipImg {
+  width : 100%;
+  position : relative;
+  margin-bottom : .5rem;
+}
+
+/* userInfoBottom */
+.userInfoBottom {
+  margin-top : 2rem;
+}
+.userInfoBottomMainTabWrap {
+  background : var(--bgDeep);
+  display : flex;
+  padding : .5rem;
+  width : fit-content;
+  border-radius : 5px 5px 0 0;
+}
+.userInfoBottomMainTab {
+  margin-right : 2rem;
+  color : #666;
+  cursor : pointer;
+}
+.userInfoBottomMainTab:last-child {
+  margin-right : 0;
+}
+.userInfoBottomSubTabWrap {
+  background : var(--bgDeep);
+  display : flex;
+  margin-bottom : .5rem;
+  border-radius : 5px 5px 0 0;
+}
+.userInfoBottomSubTab {
+  margin-right : .5rem;
+  color : #666;
+  cursor : pointer;
+  flex-grow : 1;
+}
+.tabTarget {
+  color : var(--white);
+}
+.userInfoBottomMainTabContent {
+  background : var(--bgDeep);
+  padding : .5rem;
+}
+/* 장비리스트 */
+.equipList {
+  position : relative;
+  display : flex;
+  align-items : center;
+  margin-bottom : .5rem;
+  padding : .3rem;
+  background : var(--bgLow);
+  border-radius : var(--contBox-border-radius);
+}
+.equipList:last-child {
+  margin-bottom : 0;
+}
+.equipListImg {
+  position : relative;
+  width : 12%;
+  min-width : 40px;
+  margin-right : .5rem;
+}
+.equipListContent {
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+}
+.equipListContent * {
+  color : rgba(222,222,222);
+}
+
+/* 아바타리스트 */
+.avatarList {
+  background : var(--bgLow);
+  border-radius : var(--contBox-border-radius);
+  padding : .3rem;
+  padding-top : 0;
+  display : flex;
+  justify-content : space-between;
+}
+.avatarListLeft, .avatarListRight {
+  width : 25%;
+}
+.avatarPartWrap {
+  display : flex;
+}
+.flexcolumn {
+  flex-direction : column;
+  align-items : flex-end;
+}
+.avatarWrap {
+  width : 50%;
+  margin-top : .3rem;
+  position : relative;
+}
+.avatarWrap .listDetail {
+  width : 600%;
+  left : 20%;
+}
+.avatarWrap .PosChange {
+  left : -520%;
+}
+
+/* 아이템 상세보기 */
+.listDetail {
+  padding : .5rem;
+  position : absolute;
+  width : 80%;
+  bottom : 20%;
+  left : 5%;
+  background : black;
+  display : none;
+  background : rgba(0,0,0,0.85);
+  max-height : 600px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.listDetailEQUIP {
+  width : 320px;
+  max-width : 85%;
+}
+.listDetail::-webkit-scrollbar {
+  display: none;
+}
+.listDetailTop {
+  display : flex;
+  justify-content : space-between;
+}
+.listDetailImg {
+  width : 20%;
+  display : flex;
+  align-items : center;
+}
+.listDetailImgs {
+  position : relative;
+  width : 100%;
+}
+.listDetailMainInfo {
+  width : 78%;
+  overflow : hidden;
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+}
+.listDetailQuality {
+  position : relative;
+  width : 100%;
+  height : 15px;
+  line-height : 12px;
+  margin-top : .5rem;
+  border : var(--contBox-border);
+}
+.listDetailQuality .qualityValue {
+  position : absolute;
+  top : 0;
+  left : 0;
+  height : 100%;
+  z-index : -1;
+}
+.itemPartBoxWrap, .singleTextWrap, .intentStringWrap {
+  margin : .5rem 0;
+}
+.itemPartBox, .singleText, .intentString {
+  margin-top : .5rem;
+}
+.itemPartBoxTitle {
+  font-weight : bold;
+  margin-bottom : .15rem;
+}
+.tripodSkillCustom {
+  display : flex;
+  justify-content : space-between;
+  align-items : center;
+  margin-top : .5rem;
+}
+.GemImg {
+  width : 12%;
+  height : fit-content;
+}
+.GemInfo {
+  display : flex;
+  width : 86%;
+  flex-direction : column;
+  justify-content : center;
+}
+.GemStat, .GemName {
+  width : 100%;
+}
+
+.skillRuneContent, .skillTripod {
+  display : flex;
+  margin-top : 1rem;
+  align-items : center;
+}
+.runeImg, .skillTripodImg {
+  border : var(--contBox-border);
+  border-radius : var(--contBox-border-radius);
+  width : 10%;
+  margin-right : .3rem;
+}
+.runeMainInfo, .skillTripodContent {
+  width : 80%;
+}
+.runeMainInfo div {
+  width : 100%;
+}
+
+/* 스킬 */
+.userSkillPoint {
+  padding : .5rem 0;
+  text-align : center;
+}
+.userUseSkill:first-child {
+  margin-right : 1rem;
+}
+.userSkillListWrap {
+  padding-top : 0;
+}
+.userSkillList {
+  display : flex;
+  position : relative;
+  align-items : center;
+  margin-top : .5rem;
+  background : var(--bgLow);
+  padding : .3rem;
+  border-radius : var(--contBox-border-radius);
+}
+.userSkillImg {
+  width : 12%;
+  margin-right : .5rem;
+  background : var(--bgDeep);
+}
+.userSkillImg img {
+  transform : scale(.9);
+}
+.userSkillNameLv {
+  display : flex;
+}
+.userSkillNameLv > div:last-child {
+  margin-left : .3rem;
+}
+
+.userLifeSkillWrap {
+  display : flex;
+}
+.lifeSkillList {
+  flex-grow : 1;
+  text-align : center;
+}
+
+/* 수집품 */
+.userCollectionTitle {
+  margin-top : 1rem;
+}
+.userCollectionDetailWrap {
+  display : flex;
+  margin-top : 1rem;
+}
+.userCollectionDetailWrap > div {
+  width : 50%;
+}
+.userCollectionSide {
+  padding : .5rem;
+}
+.userCollectionIsGet {
+  margin-bottom : .6rem;
+}
+.userCollectionRight .userCollectionName {
+  color : rgba(255,100,0);
+}
+.userCollection {
+  display : flex;
+}
+.userCollectionNo {
+  margin-right : .3rem;
+}

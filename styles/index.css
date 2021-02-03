@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+:root {
+  --contBox-border-radius : 3px;
+  --contBox-border : 1px solid #999;
+  --white : #f0f4f5;
+  --bgDeep : #111;
+  --bgLow : #222;
+}
+
+* {margin : 0; padding : 0; box-sizing : border-box; text-decoration: none; color : var(--white); font-family: 'Noto Sans KR', sans-serif;}
+
+
+body {
+  background : var(--bgDeep);
+  overflow-y : scroll;
+}
+
+.displayNone {
+  display : none;
+}
+.displayBlock {
+  display : block !important;
+}
+.absolute {
+  position : absolute;
+}
+.imgWidth {
+  display : block;
+  width : 100%;
+}
+.equipMainImg {
+  top : 0;
+  transform : scale(.9);
+}
+.textCenter {
+  text-align : center;
+}
+
+.height100vh {height : 100vh; overflow : hidden;}
+.vw07 {font-size : 0.7vw;}
+.rem07 {font-size : 0.7rem;}
+.rem08 {font-size : 0.8rem;}
+.rem09 {font-size : 0.9rem;}
+.rem1 {font-size : 1rem;}
+.rem11 {font-size : 1.1rem;}
+.rem12 {font-size : 1.2rem;}
+.rem13 {font-size : 1.3rem;}
+.rem17 {font-size : 1.7rem;}
+.zIndex10 { z-index : 10; }
+.zIndex11 { z-index : 11; }
+.zIndex99 { z-index : 99; }
+.gradient-1 { background : linear-gradient(135deg, #232323, #7a0000); }
+.gradient0 { background : linear-gradient(135deg, #232323, #575757); }
+.gradient1 { background : linear-gradient(135deg, #18220b, #304911); }
+.gradient2 { background : linear-gradient(135deg, #111f2c, #113d5d); }
+.gradient3 { background : linear-gradient(135deg, #261331, #480d5d); }
+.gradient4 { background : linear-gradient(135deg, #362003, #9e5f04); }
+.gradient5 { background : linear-gradient(135deg, #341a09, #a24006); }
+.color0, .color0 * { color : #a19f9f !important; font-weight: bold; }
+.color1, .color1 * { color : #4e8d01 !important; font-weight: bold; }
+.color2, .color2 * { color : #0063aa !important; font-weight: bold; }
+.color3, .color3 * { color : #700099 !important; font-weight: bold; }
+.color4, .color4 * { color : #ff9500 !important; font-weight: bold; }
+.color5, .color5 * { color : #ff5e00 !important; font-weight: bold; }
+.overflowDot {
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+}
+.hoverTarget:hover .hoverContent {
+  display : block;
+}
+
+
+@media all and (min-width:768px) {
+  html { font-size : 16px;}
+}
+@media screen and (max-width: 767px){
+  html { font-size : 14px; }
+}
+@media screen and (max-width: 400px){
+  html { font-size : 10px; }
+}
