@@ -1,5 +1,7 @@
+const debug = process.env.NODE_ENV !== 'production';
+
 module.exports = {
-  assetPrefix : process.env.NODE_ENV === 'production' ? '/loa-hands-next/' : '',
+  assetPrefix : !debug ? '/loa-hands-next/' : '',
 
   webpack : (config, {
     isServer

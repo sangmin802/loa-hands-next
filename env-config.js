@@ -1,3 +1,5 @@
+const prod = process.env.NODE_ENV === 'production';
+
 module.exports = {
-  'process.env.BACKEND_URL' : process.env.NODE_ENV === 'production' ? '/loa-hands-next/' : '',
-}
+  'process.env.BACKEND_URL': !prod ? '/loa-hands-next/' : '',
+};
