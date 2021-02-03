@@ -1,8 +1,4 @@
-const debug = process.env.NODE_ENV !== 'production';
-
 module.exports = {
-  assetPrefix : !debug ? '/loa-hands-next/' : '',
-
   webpack : (config, {
     isServer
   }) => {
