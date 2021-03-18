@@ -1,0 +1,21 @@
+.innerApp {
+  padding: 0.5rem;
+}
+.loadingBg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+}
+.App {
+  position: relative;
+}
+.AppWrap {
+  max-width: 600px;
+  min-width: 310px;
+  margin: 0 auto;
+  background: var(--bgLow);
+  border-radius: var(--contBox-border-radius);
+  padding: 0.5rem;
+}

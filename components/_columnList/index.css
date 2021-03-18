@@ -1,0 +1,11 @@
+.columnList {
+  position : relative;
+  min-height : 52px;
+  margin-bottom : .5rem;
+  padding : .3rem;
+  background : var(--bgLow);
+  border-radius : var(--contBox-border-radius);
+}
+.columnList:last-child {
+  margin-bottom : 0;
+}

@@ -1,0 +1,67 @@
+.detailTop {
+  display: flex;
+  justify-content: space-between;
+}
+.detailTop .imgTextWrap {
+  display: flex;
+  width: 100%;
+}
+.detailTop .imgWrap {
+  width: 20%;
+  min-width: 60px;
+  margin-right: 0.5rem;
+}
+.detailTop .textWrap {
+  width: calc(80% - 0.5rem - 0.1px);
+  min-width: calc(100% - 0.5rem - 60.1px);
+}
+.detailTop .textWrap > div {
+  font-size: 0.7rem;
+}
+.detailTop .textWrap > div:last-child {
+  font-size: 1.05rem;
+}
+
+.detailBottom > div {
+  margin-top: 0.7rem;
+}
+.detailBottom > div * {
+  font-size: 0.9rem;
+}
+.detailBottom .textWrap * {
+  overflow: initial;
+  white-space: initial;
+}
+
+/* 템플릿 */
+.itemPartBoxes > div,
+.indentStrings > div {
+  margin-top: 0.5rem;
+}
+
+.detailQuality {
+  position: relative;
+  width: 100%;
+  height: 15px;
+  line-height: 12px;
+  margin-top: 0.5rem;
+  border: var(--contBox-border);
+  border-radius: var(--contBox-border-radius);
+}
+.detailQuality .qualityValue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: -1;
+}
+
+.rune {
+  margin-top: 0.5rem;
+}
+.rune .textWrap * {
+  font-size: 0.9rem;
+}
+.rune .textWrap > div:last-child {
+  font-size: 0.8rem;
+}

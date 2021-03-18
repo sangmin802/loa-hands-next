@@ -1,0 +1,11 @@
+.userExpedition {
+  margin-bottom : 1rem;
+}
+.userExpeditionServer {
+  font-weight : bold;
+  margin-bottom : 1rem;
+}
+.userExpeditionCharWrap {
+  display : flex;
+  flex-wrap : wrap;
+}

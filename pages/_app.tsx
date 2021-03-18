@@ -1,13 +1,12 @@
-import '../styles/App.css'
-import '../styles/Header.css'
-import '../styles/index.css'
-import '../styles/UserInfo.css'
-import React from 'react';
-import { AppProps } from 'next/app'
-import { wrapper } from '../store'
+import "style/App.css";
+import "style/index.css";
+import "style/UserInfo.css";
+import React from "react";
+import { AppProps } from "next/app";
+import { wrapper } from "store/index";
 
-const App : React.FC<AppProps> = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />
-}
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
 
-export default wrapper.withRedux(App)
+export default wrapper.withRedux(App);

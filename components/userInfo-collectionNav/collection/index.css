@@ -1,0 +1,15 @@
+.collectionMini {
+  display : flex;
+  flex-grow : 1;
+  justify-content : center;
+}
+.collectionMiniBg {
+  width : 20px;
+  height : 24px;
+  background : url('https://github.com/sangmin802/loa-hands/blob/master/public/img/all.png?raw=true');
+  background-size: 1250px 1209px;
+  margin-right : .3rem;
+}
+.collectionMiniSize {
+  line-height : 24px;
+}
