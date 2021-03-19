@@ -1,7 +1,7 @@
 import UserInfo from "../models/userInfo";
 import HomeData from "../models/homeData";
 import _ from "../utility/utility";
-import { PROXY } from "../porxy";
+import { PROXY } from "../proxy";
 import axios from "axios";
 
 export default {
