@@ -1,28 +1,55 @@
-import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux';
-import Layout from '../../components/Layout';
-
-import UserInfoContainer from '../../components/UserInfo/Container/UserInfoContainer'
-import { RootState } from '../../store';
+import React, { useEffect } from "react";
+import Layout from "layout/layout";
+import UserInfoBlank from "template/userInfoBlank";
+import UserExpeditionPop from "components/userInfo-expeditionPop/index";
+import UserBasicInfo from "components/userInfo-basic/index";
+import UserExpeditionChars from "components/userInfo-expeditionChars/index";
+import UserDataHook from "hooks/userDataHook";
+import SubTab from "components/userInfo-subTab/index";
+import MainTab from "components/userInfo-mainTab/index";
+import TabContent from "components/userInfo-tabContents/index";
+import ExpeditionPopHook from "hooks/expeditionPopHook";
+import UserNameHook from "hooks/userNameHook";
+import LoadingToggleHook from "hooks/loadingToggleHooks";
 
 const UserInfoRoute = () => {
-  const router = useRouter();
-  const {name} = router.query;
-  const isLoading = useSelector((state : RootState) => state.isLoading);
+  const name = UserNameHook();
+  const { userData, setUserData } = UserDataHook();
+  const { expeditionPop, setExpeditionPop } = ExpeditionPopHook();
+  const { setisLoading } = LoadingToggleHook();
 
-  // 자꾸 서버에서도 작동되는것 같아, 서버환경이라면 미작동으로 함
-  if(typeof window === 'undefined') return null;
+  useEffect(() => {
+    if (!userData && name) setUserData(name);
+  }, [name, setUserData, userData]);
+
+  useEffect(() => {
+    if (userData) setisLoading();
+  }, [setisLoading, userData]);
 
   return (
-    <>
-    {name &&
-      <Layout title={`유저정보 - ${name}`} isLoading={isLoading}>
-        <UserInfoContainer name={name as string}/>
-      </Layout>
-    }
-    </>
+    <Layout title={`유저정보 - ${name}`}>
+      {!userData && <UserInfoBlank />}
+      {userData && (
+        <section className="userInfo">
+          <section className="userInfoTop">
+            <UserExpeditionPop expeditionPopToggle={setExpeditionPop} />
+            <UserExpeditionChars
+              userData={userData}
+              setUserData={setUserData}
+              expeditionPop={expeditionPop}
+              setExpeditionPop={setExpeditionPop}
+            />
+            <UserBasicInfo userData={userData} />
+          </section>
+          <section className="userInfoBottom">
+            <MainTab />
+            <SubTab data={userData} />
+            <TabContent data={userData} />
+          </section>
+        </section>
+      )}
+    </Layout>
   );
-}
-
+};
 
 export default UserInfoRoute;

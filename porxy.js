@@ -1,1 +1,1 @@
-export const PROXY = 'https://sangminproxy.herokuapp.com/';
+export const PROXY = "https://loa-hands-server.herokuapp.com/";

@@ -1,0 +1,21 @@
+.tabWrap {
+  background: var(--bgDeep);
+  padding: 0.5rem;
+  display: flex;
+  width: fit-content;
+  border-radius: 5px 5px 0 0;
+}
+.tab {
+  width: fit-content;
+  margin-right: 1rem;
+  color: #666;
+  cursor: pointer;
+}
+.tab * {
+  color: #666;
+}
+
+.white,
+.white * {
+  color: white;
+}

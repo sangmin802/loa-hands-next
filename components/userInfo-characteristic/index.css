@@ -1,0 +1,20 @@
+.characteristics {
+  margin-bottom: 2rem;
+}
+.characteristic {
+  margin-bottom: 0.5rem;
+}
+.characteristic:last-child {
+  margin-bottom: 0;
+}
+.characteristic > .textWrap {
+  flex-direction: row;
+  width: fit-content;
+}
+.characteristic > .textWrap > div {
+  background-color: var(--bgLow);
+  border-radius: var(--contBox-border-radius);
+  padding: 0.1rem 0.3rem;
+  margin-right: 0.3rem;
+  margin-top: 0.5rem;
+}

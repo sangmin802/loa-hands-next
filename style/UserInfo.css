@@ -1,0 +1,28 @@
+.userInfo {
+  border-radius: var(--contBox-border-radius);
+}
+/* userInfoTop */
+.userInfoTop {
+  position: relative;
+  width: 100%;
+  background: var(--bgDeep);
+  border-radius: var(--contBox-border-radius);
+  padding: 1rem 0.5rem 1rem;
+}
+
+/* userInfoBottom */
+.userInfoBottom {
+  margin-top: 1rem;
+}
+.tabContentWrap {
+  background: var(--bgDeep);
+  padding: 0.5rem;
+  border-radius: 0 0 5px 5px;
+}
+
+.tabContent1 .columnList > .imgTextWrap .textWrap > div {
+  font-size: 0.7rem;
+}
+.tabContent1 .columnList > .imgTextWrap .textWrap > div:last-child {
+  font-size: 0.9rem;
+}
