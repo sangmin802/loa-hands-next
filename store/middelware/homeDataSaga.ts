@@ -1,5 +1,5 @@
 import { put, takeLatest, call } from "redux-saga/effects";
-import { resetToggle } from "../ducks/toggleSlicer";
+import { expeditionPopToggle } from "../ducks/toggleSlicer";
 import { resetTab } from "../ducks/tabSlicer";
 import API from "api/API";
 import { GET_HOME_DATA_SAGA, getHomeData } from "../ducks/ajaxSlicer";
@@ -8,7 +8,7 @@ export function* getHomeData_Saga(action) {
   const history = action.history;
   try {
     const homeData = yield call(API.getHomeData);
-    yield put(resetToggle());
+    yield put(expeditionPopToggle());
     yield put(resetTab());
     yield put(getHomeData({ homeData }));
     if (history) history.replace(`/`);
