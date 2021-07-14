@@ -16,7 +16,6 @@ import RefreshHook from "hooks/refreshHook";
 
 const Index = () => {
   const { homeData, setHomeData } = HomeDataHook();
-
   DateOverHook(setHomeData);
   RefreshHook();
 

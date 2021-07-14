@@ -1,7 +1,25 @@
-import _ from "utility/utility";
+interface Item {
+  title: string;
+  content: { title: string[]; desc: string }[];
+}
 
-export default class Characteristic {
-  [key: string]: {};
+interface Props {
+  basic: Item;
+  battle: Item;
+  tendency: Item;
+  engrave: Item;
+}
+
+const initialData = {
+  title: "",
+  content: [],
+};
+
+export default class Characteristic implements Props {
+  basic: any = initialData;
+  battle: any = initialData;
+  tendency: any = initialData;
+  engrave: any = initialData;
 
   constructor(el) {
     ["basic", "battle", "tendency", "engrave"].forEach((res, index) => {
@@ -16,7 +34,7 @@ export default class Characteristic {
       let desc = null;
       [...li.children].forEach(el => {
         if (el.nodeName === "SPAN") title.push(el.textContent);
-        if (el.nodeName === "DIV") desc = _.getOnlyText(el.textContent);
+        if (el.nodeName === "DIV") desc = el.innerHTML;
       });
       return { title, desc };
     });
