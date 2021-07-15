@@ -1,56 +1,173 @@
-// import { GetStaticProps } from 'next';
+// import { GetStaticProps } from "next";
 // import { wrapper } from '../store'
 // import { useDispatch, useSelector } from 'react-redux'
-// import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { dailyIsland, fieldBoss, chaosGate, oceanCont } from "json/JSON";
-import DateOverHook from "hooks/dateOverHook";
-import HomeDataHook from "hooks/homeDataHook";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  DAILY_ISLAND,
+  FIELD_BOSS,
+  CHAOS_GATE,
+  OCEAN_ACT,
+  PHANTOM_SHIP,
+} from "json/json";
+import { useCalendar } from "hooks/use-calendar";
+import { useEvent } from "hooks/use-event";
+import {
+  SectionContainer,
+  TimerContainer,
+  LoadingSpinner,
+  Event,
+  AsyncBoundary,
+  ErrorFallback,
+} from "components/";
+import Layout from "layout/index";
+import { interval } from "utils/events/interval";
+import * as Styled from "./index.style";
+import { getCalendarData, getEventData } from "api/api";
 
-// 컴포넌트
-import Layout from "layout/layout";
-import EventSection from "components/home-event/index";
-import TimerSection from "components/home-timerSection/index";
-import CalendarSection from "components/home-calendar/index";
-import RefreshHook from "hooks/refreshHook";
+const Home = ({ eventData, calendarData }) => {
+  const [isMidnight, setMidnight] = useState(new Date());
+  const [isSix, setSix] = useState(new Date());
 
-const Index = () => {
-  const { homeData, setHomeData } = HomeDataHook();
-  DateOverHook(setHomeData);
-  RefreshHook();
+  const updateTime = useCallback(arr => {
+    const [setMidnight, setSix] = arr;
+    const now = new Date();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const sec = now.getSeconds();
+    if (hour === 0 && min === 0 && sec === 0) {
+      setMidnight(now);
+    }
+    if (hour === 6 && min === 0 && sec === 0) {
+      setSix(now);
+    }
+  }, []);
+
+  const { startInterval, endInterval } = useMemo(
+    () => interval(1, updateTime),
+    [updateTime]
+  );
 
   useEffect(() => {
-    if (!homeData) setHomeData();
-  }, [homeData, setHomeData]);
-
-  const today = new Date().getSeconds();
-  const yoil = new Date().getDay();
+    startInterval([setMidnight, setSix]);
+    return () => {
+      endInterval();
+    };
+  }, [endInterval, startInterval, setMidnight, setSix]);
 
   return (
-    <Layout title={"Loa Hands"}>
-      <section className="home">
-        <EventSection events={homeData?.events} />
-        <CalendarSection
-          calendar={homeData?.calendar}
-          today={today}
-          yoil={yoil}
-        />
-        <TimerSection data={dailyIsland} today={today} text="오늘의 모험섬" />
-        <TimerSection
-          data={fieldBoss[yoil]}
-          today={today}
-          text="오늘의 필드보스"
-        />
-        <TimerSection
-          data={chaosGate[yoil]}
-          today={today}
-          text="오늘의 카오스 게이트"
-        />
-        <TimerSection data={oceanCont[yoil]} today={today} text="오늘의 항해" />
-      </section>
+    <Layout>
+      <Styled.Section>
+        <SectionContainer title="진행중인 이벤트">
+          <AsyncBoundary
+            suspenseFallback={<LoadingSpinner />}
+            errorFallback={<ErrorFallback />}
+          >
+            <FetchEvent initialData={eventData} />
+          </AsyncBoundary>
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 캘린더섬">
+          <AsyncBoundary
+            suspenseFallback={<LoadingSpinner />}
+            errorFallback={<ErrorFallback />}
+          >
+            <FetchCalendar isMidnight={isMidnight} initialData={calendarData} />
+          </AsyncBoundary>
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 모험섬">
+          <TimerContainer data={DAILY_ISLAND} />
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 필드보스">
+          <TimerContainer
+            data={FIELD_BOSS[isSix.getDay()]}
+            rerenderKey={isSix}
+          />
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 카오스 게이트">
+          <TimerContainer
+            data={CHAOS_GATE[isSix.getDay()]}
+            rerenderKey={isSix}
+          />
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 유령선">
+          <TimerContainer
+            data={PHANTOM_SHIP[isSix.getDay()]}
+            rerenderKey={isSix}
+          />
+        </SectionContainer>
+      </Styled.Section>
+      <Styled.Section>
+        <SectionContainer title="오늘의 항해">
+          <TimerContainer
+            data={OCEAN_ACT[isSix.getDay()]}
+            rerenderKey={isSix}
+          />
+        </SectionContainer>
+      </Styled.Section>
     </Layout>
   );
 };
+
+const FetchCalendar = ({ isMidnight, initialData }) => {
+  const yoil = isMidnight.getDay();
+  const calendarData = useCalendar(isMidnight.getDate(), initialData);
+  const [title1, title2] = useMemo(() => {
+    if (6 > yoil && yoil > 0) return ["11:00 ~ 21:00", null];
+    return ["09:00 ~ 13:00", "19:00 ~ 23:00"];
+  }, [yoil]);
+
+  return (
+    <>
+      <Styled.Section>
+        <SectionContainer title={title1}>
+          <TimerContainer
+            data={calendarData.calendar[0] ?? []}
+            rerenderKey={isMidnight}
+          />
+        </SectionContainer>
+      </Styled.Section>
+      {calendarData.calendar[1].length !== 0 && (
+        <Styled.Section>
+          <SectionContainer title={title2}>
+            <TimerContainer
+              data={calendarData.calendar[1] ?? []}
+              rerenderKey={isMidnight}
+            />
+          </SectionContainer>
+        </Styled.Section>
+      )}
+    </>
+  );
+};
+
+const FetchEvent = ({ initialData }) => {
+  const eventData = useEvent(initialData);
+
+  return (
+    <Styled.Content type="event">
+      {eventData.events.map((event, index) => (
+        <Styled.Event key={`event${index}`}>
+          <Event event={event} />
+        </Styled.Event>
+      ))}
+    </Styled.Content>
+  );
+};
+
+export async function getStaticProps() {
+  const eventData = JSON.stringify(await getEventData());
+  const calendarData = JSON.stringify(await getCalendarData());
+  return { props: { eventData, calendarData } };
+}
 
 // pre-rendering을 위해, homeData를 받아올 때 서버에서는 DOMParser를 인식하지 못함
 //  왜냐, 정적생성을 할 때에는 DOM을 구성하기 전에 서버에서 실행되기 때문
@@ -69,4 +186,4 @@ const Index = () => {
 //   }
 // );
 
-export default Index;
+export default React.memo(Home, () => true);
