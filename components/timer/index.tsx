@@ -42,7 +42,7 @@ const Timer = ({ setTime, data }: PropsWithChildren<ITimer<IData>>) => {
       </Styled.Title>
       <Styled.Content>
         <Styled.TimerImg>
-          <Image src={`${process.env.PUBLIC_URL}${src}`} />
+          <Image src={src} />
           <Styled.Lv>
             <Text type="small">{lv}</Text>
           </Styled.Lv>
