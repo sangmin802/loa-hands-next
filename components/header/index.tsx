@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, PropsWithChildren } from "react";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 import * as Styled from "./index.style";
 import { Input, Button, Text } from "components/";
 
@@ -9,7 +9,7 @@ interface IHeader {
 
 const Header = ({ resetBoundary }: PropsWithChildren<IHeader>) => {
   const textInput = useRef(null);
-  const history = useHistory();
+  const history = useRouter();
   const onSubmitHandler = useCallback(
     e => {
       const name = textInput?.current?.value;
