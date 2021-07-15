@@ -26,7 +26,8 @@ const AsyncBoundary = ({
 
   return (
     <ErrorBoundary resetQuery={resetHandler} errorFallback={errorFallback}>
-      <Suspense fallback={suspenseFallback}>{children}</Suspense>
+      {children}
+      {/* <Suspense fallback={suspenseFallback}>{children}</Suspense> */}
     </ErrorBoundary>
   );
 };
