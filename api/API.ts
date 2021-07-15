@@ -33,7 +33,6 @@ export const getEventData = async (): Promise<EventData> => {
       url: `${PROXY}loa-hands/homeData`,
       method: "get",
     });
-
     return new EventData(data);
   } catch (err) {
     const message = err?.response?.data?.message ?? "네트워크 에러입니다.";
@@ -70,7 +69,6 @@ export default {
     });
   },
   getUserData: async (name): Promise<UserInfo> => {
-    console.log("실행됨");
     try {
       const { data } = await axios({
         url: `${PROXY}loa-hands/userInfo`,
