@@ -1,14 +1,10 @@
 import React, { cloneElement } from "react";
 import Head from "next/head";
-import {
-  SearchLoading,
-  Header,
-  AsyncBoundary,
-  ErrorFallback,
-} from "components/";
+import { Header } from "components/";
 import * as Styled from "./index.style";
+import Lodash from "lodash";
 
-function App({ children, title = "Loa-Hands" }) {
+function Layout({ children, title = "Loa-Hands", page }) {
   return (
     <>
       <Head>
@@ -22,14 +18,8 @@ function App({ children, title = "Loa-Hands" }) {
         <meta name="description" content="Lostark 유저 검색 앱" />
       </Head>
       <Styled.Container>
-        <AsyncBoundary
-          suspenseFallback={<SearchLoading />}
-          errorFallback={<HeaderLayout children={<ErrorFallback />} />}
-        >
-          <HeaderLayout>
-            <Styled.Main>{children}</Styled.Main>
-          </HeaderLayout>
-        </AsyncBoundary>
+        {page === "userInfo" && <>{children}</>}
+        {page !== "userInfo" && <HeaderLayout>{children}</HeaderLayout>}
       </Styled.Container>
     </>
   );
@@ -41,9 +31,9 @@ export function HeaderLayout({ children, ...props }) {
       <Styled.HeaderContainer>
         <Header {...props} />
       </Styled.HeaderContainer>
-      {cloneElement(children, { ...props })}
+      <Styled.Main>{cloneElement(children, { ...props })}</Styled.Main>
     </Styled.InnerContainer>
   );
 }
 
-export default React.memo(App, () => true);
+export default React.memo(Layout, (left, right) => Lodash.isEqual(left, right));
