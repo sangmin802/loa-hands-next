@@ -1,8 +1,0 @@
-.showExpeditionWrap {
-  float : right;
-  background : var(--bgLow);
-  padding : .3rem;
-  border-radius : var(--contBox-border-radius);
-  cursor : pointer;
-  border : var(--contBox-border);
-}

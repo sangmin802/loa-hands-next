@@ -1,5 +1,0 @@
-.section:nth-of-type(1) .sectionContent {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}

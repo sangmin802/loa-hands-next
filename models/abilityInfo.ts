@@ -1,28 +1,50 @@
 import EquipInfo from "./equipInfo";
 import Characteristic from "./characteristic";
-import { partsArr, partsImg } from "../json/JSON.js";
+import { PARTS_ARR, PARTS_IMAGE } from "../json/json";
 
-export default class AbilityInfo {
-  public equipInfo = {};
-  public characteristicInfo = {};
+interface PartDetail {
+  [key: string]: {
+    backSrc: string;
+    divideType: string;
+    detail?: EquipInfo;
+  };
+}
+
+interface Equip {
+  equipment: PartDetail;
+  avatar: PartDetail;
+}
+
+interface Props {
+  equipInfo: Equip;
+  characteristicInfo: Characteristic;
+}
+
+export default class AbilityInfo implements Props {
+  equipInfo: Equip = {
+    equipment: {},
+    avatar: {},
+  };
+  characteristicInfo: Characteristic;
 
   constructor(profileObj, raw) {
-    partsArr.forEach((part, index) => {
-      let type = null;
-      if (index <= 22) type = "OuterAv";
-      if (index <= 18) type = "InnerAv";
-      if (index === 11) type = "Stone";
-      if (index <= 10) type = "Acc";
-      if (index <= 5) type = "Equip";
+    PARTS_ARR.forEach((part, index) => {
+      const type = index < 12 ? "equipment" : "avatar";
+      let divideType = null;
 
-      this.equipInfo[part] = {
-        backSrc: "//cdn-lostark.game.onstove.com/" + partsImg[index],
-        type,
+      if (index <= 22) divideType = "outerAv";
+      if (index <= 18) divideType = "innerAv";
+      if (index === 11) divideType = "stone";
+      if (index <= 10) divideType = "acc";
+      if (index <= 5) divideType = "equip";
+      this.equipInfo[type][part] = {
+        backSrc: "//cdn-lostark.game.onstove.com/" + PARTS_IMAGE[index],
+        divideType,
       };
     });
 
     // 장비정보가 있는경우만
-    if (profileObj) this.setUserInfoEquip(profileObj.Equip, partsArr);
+    if (profileObj) this.setUserInfoEquip(profileObj.Equip, PARTS_ARR);
 
     // 특성설정(각인, 특성)
     const characteristic = raw.querySelector(".profile-char");
@@ -33,9 +55,9 @@ export default class AbilityInfo {
     const equipKeyArr = Object.keys(equip);
     equipKeyArr.forEach((key: string) => {
       const num = Number(key.substr(key.length - 3, key.length));
+      const type = num < 12 ? "equipment" : "avatar";
       if (partsArr[num]) {
-        const target = this.equipInfo[partsArr[num]];
-
+        const target = this.equipInfo[type][partsArr[num]];
         target.detail = new EquipInfo(equip[key]);
       }
     });

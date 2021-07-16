@@ -1,15 +1,42 @@
-import _ from "utility/utility";
+import { getOnlyText } from "utils/parse-string";
 
-export default class EquipInfo {
+interface ItemPartBox {
+  title: string;
+  desc: string;
+}
+interface IndentStringGroup {
+  title: { val: string; active: number | null };
+  desc: { val: string; active: number | null }[];
+}
+interface TripodSkillCustom {
+  name: string;
+  desc: string;
+  grade: string;
+  src: string | null;
+}
+
+interface Props {
+  hover: boolean;
+  title: string;
+  subTitle: (string | null)[];
+  quality: number;
+  src: string;
+  grade: number;
+  itemPartBox: ItemPartBox[];
+  indentStringGroup: IndentStringGroup[];
+  tripodSkillCustom: TripodSkillCustom[];
+}
+
+export default class EquipInfo implements Props {
   hover: boolean;
   title: string;
   subTitle: (string | null)[] = [];
   quality: number;
   src: string;
   grade: number;
-  itemPartBox: { title; desc }[] = [];
-  indentStringGroup: { title: { val; active }; desc }[] = [];
-  tripodSkillCustom: { name; desc; grade; src }[] = [];
+  itemPartBox: ItemPartBox[] = [];
+  indentStringGroup: IndentStringGroup[] = [];
+  tripodSkillCustom: TripodSkillCustom[] = [];
 
   constructor(data) {
     const v = Object.values(data);
@@ -24,8 +51,7 @@ export default class EquipInfo {
     TripodSkillCustom =
       TripodSkillCustom.length === 0 ? null : TripodSkillCustom;
 
-    this.title = _.getOnlyText(NameTagBox.value) as string;
-
+    this.title = getOnlyText(NameTagBox.value) as string;
     let regex = new RegExp(/leftStr[0-9]/g);
     const subTitleArr = Object.keys(ItemTitle.value).filter(res =>
       res.match(regex)
@@ -34,7 +60,7 @@ export default class EquipInfo {
       let val = ItemTitle.value[res];
       if (val.includes("품질")) return;
       if (val === "") val = "아이템 레벨 -";
-      this.subTitle.push(_.getOnlyText(val) as string);
+      this.subTitle.push(getOnlyText(val) as string);
     });
     this.quality = ItemTitle.value.qualityValue ?? null;
     this.src = ItemTitle.value.slotData.iconPath
@@ -45,10 +71,10 @@ export default class EquipInfo {
 
     // 텍스트 그룹 여러개의 구조
     ItemPartBox?.forEach(res => {
-      const els = Object.values(res.value);
+      const els: string[] = Object.values(res.value);
       this.itemPartBox.push({
-        title: _.getOnlyText(els[0]),
-        desc: _.getOnlyText(els[1]),
+        title: els[0],
+        desc: els[1],
       });
     });
 
@@ -60,7 +86,7 @@ export default class EquipInfo {
         if (topStr.includes("#aaaaaa")) active = 0;
         if (topStr.includes("#aaaaaa'><FONT COLOR='")) active = null;
         // 제목
-        const title = _.getOnlyText(topStr);
+        const title = topStr;
         let desc = [];
         // 값
 
@@ -68,7 +94,7 @@ export default class EquipInfo {
           let active = null;
           if (c2.includes("#aaaaaa")) active = 0;
           if (c2.includes("#aaaaaa'><FONT COLOR='")) active = null;
-          const val = _.getOnlyText(c2);
+          const val = c2;
           desc.push({ val, active });
         });
 
@@ -81,8 +107,8 @@ export default class EquipInfo {
       const els = Object.values(res.value);
       els.forEach(({ name, desc, slotData }) => {
         this.tripodSkillCustom.push({
-          name: _.getOnlyText(name),
-          desc: _.getOnlyText(desc),
+          name: name,
+          desc: desc,
           grade: slotData?.iconGrade,
           src: slotData?.iconPath
             ? "//cdn-lostark.game.onstove.com/" + slotData?.iconPath
@@ -90,29 +116,6 @@ export default class EquipInfo {
         });
       });
     });
-    //   let sameDivideCount : number = 0;
-    //   Object.values(data)
-    //   .map((val : object) => {
-    //     if(!val['type']) return {...val, type : 'innerValid'};
-    //     return val;
-    //   })
-    //   .sort((a : object, b : object) => {
-    //     const typeA = a['type'].toUpperCase();
-    //     const typeB = b['type'].toUpperCase();
-    //     if (typeA < typeB) return -1;
-    //     if (typeA > typeB) return 1;
-    //     return 0;
-    //   })
-    //   .reduce((prev, cur, index) => {
-    //     if(index === 1) this[prev['type']+sameDivideCount] = prev;
-    //     if(prev['type'] !== cur['type']){
-    //       sameDivideCount = 0;
-    //     }else{
-    //       sameDivideCount++;
-    //     }
-    //     this[cur['type']+sameDivideCount] = cur;
-    //     return cur;
-    //   })
   }
 
   filterType(arr, type) {

@@ -1,9 +1,0 @@
-.subTabWrap {
-  border-radius: 0;
-  width: 100%;
-  border-radius: 0 5px 0 0;
-}
-.subTabWraps > .subTabWrap:nth-of-type(3) .tab {
-  flex-grow: 1;
-  margin-right: 0;
-}
