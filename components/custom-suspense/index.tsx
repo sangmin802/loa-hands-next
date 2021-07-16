@@ -1,16 +1,4 @@
-import {
-  Suspense,
-  PropsWithChildren,
-  SuspenseProps,
-  useEffect,
-  useState,
-  ReactElement,
-  ComponentProps,
-} from "react";
-
-// interface ICustomSuspense extends SuspenseProps {
-//   fallback: ReactElement;
-// }
+import { Suspense, useEffect, useState, ComponentProps } from "react";
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
