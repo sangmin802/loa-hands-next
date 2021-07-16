@@ -55,64 +55,69 @@ const Home = ({ eventData, calendarData }) => {
   }, [endInterval, startInterval, setMidnight, setSix]);
 
   return (
-    <Layout>
-      <Styled.Section>
-        <SectionContainer title="진행중인 이벤트">
-          <AsyncBoundary
-            suspenseFallback={<LoadingSpinner />}
-            errorFallback={<ErrorFallback />}
-          >
-            <FetchEvent initialData={eventData} />
-          </AsyncBoundary>
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 캘린더섬">
-          <AsyncBoundary
-            suspenseFallback={<LoadingSpinner />}
-            errorFallback={<ErrorFallback />}
-          >
-            <FetchCalendar isMidnight={isMidnight} initialData={calendarData} />
-          </AsyncBoundary>
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 모험섬">
-          <TimerContainer data={DAILY_ISLAND} />
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 필드보스">
-          <TimerContainer
-            data={FIELD_BOSS[isSix.getDay()]}
-            rerenderKey={isSix}
-          />
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 카오스 게이트">
-          <TimerContainer
-            data={CHAOS_GATE[isSix.getDay()]}
-            rerenderKey={isSix}
-          />
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 유령선">
-          <TimerContainer
-            data={PHANTOM_SHIP[isSix.getDay()]}
-            rerenderKey={isSix}
-          />
-        </SectionContainer>
-      </Styled.Section>
-      <Styled.Section>
-        <SectionContainer title="오늘의 항해">
-          <TimerContainer
-            data={OCEAN_ACT[isSix.getDay()]}
-            rerenderKey={isSix}
-          />
-        </SectionContainer>
-      </Styled.Section>
+    <Layout page="/">
+      <Styled.Container>
+        <Styled.Section>
+          <SectionContainer title="진행중인 이벤트">
+            <AsyncBoundary
+              suspenseFallback={<LoadingSpinner />}
+              errorFallback={<ErrorFallback />}
+            >
+              <FetchEvent initialData={eventData} />
+            </AsyncBoundary>
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 캘린더섬">
+            <AsyncBoundary
+              suspenseFallback={<LoadingSpinner />}
+              errorFallback={<ErrorFallback />}
+            >
+              <FetchCalendar
+                isMidnight={isMidnight}
+                initialData={calendarData}
+              />
+            </AsyncBoundary>
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 모험섬">
+            <TimerContainer data={DAILY_ISLAND} />
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 필드보스">
+            <TimerContainer
+              data={FIELD_BOSS[isSix.getDay()]}
+              rerenderKey={isSix}
+            />
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 카오스 게이트">
+            <TimerContainer
+              data={CHAOS_GATE[isSix.getDay()]}
+              rerenderKey={isSix}
+            />
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 유령선">
+            <TimerContainer
+              data={PHANTOM_SHIP[isSix.getDay()]}
+              rerenderKey={isSix}
+            />
+          </SectionContainer>
+        </Styled.Section>
+        <Styled.Section>
+          <SectionContainer title="오늘의 항해">
+            <TimerContainer
+              data={OCEAN_ACT[isSix.getDay()]}
+              rerenderKey={isSix}
+            />
+          </SectionContainer>
+        </Styled.Section>
+      </Styled.Container>
     </Layout>
   );
 };
