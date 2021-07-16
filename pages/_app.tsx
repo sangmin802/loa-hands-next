@@ -10,7 +10,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
-      // suspense: true,
+      suspense: true,
       useErrorBoundary: true,
       cacheTime: 1000 * 60 * 5,
       staleTime: 1000 * 60 * 3,
