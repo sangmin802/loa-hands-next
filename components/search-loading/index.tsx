@@ -16,7 +16,7 @@ const SearchLoading = () => {
   return (
     <Styeld.BackgroundContainer data-testid="search-loading">
       <Styeld.ImageContainer>
-        <Image src={`${process.env.PUBLIC_URL}/img/emoticon_5.gif`} />
+        <Image src="/img/emoticon_5.gif" />
       </Styeld.ImageContainer>
     </Styeld.BackgroundContainer>
   );
