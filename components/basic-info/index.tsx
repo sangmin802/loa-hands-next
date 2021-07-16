@@ -131,8 +131,6 @@ const BasicInfo = <T extends IUserData>({
   );
 };
 
-// export default BasicInfo;
-
 export default React.memo(BasicInfo, (left, right) =>
   Lodash.isEqual(left, right)
 );
