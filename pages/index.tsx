@@ -21,7 +21,7 @@ import {
 } from "components/";
 import Layout from "layout/index";
 import { interval } from "utils/events/interval";
-import * as Styled from "./index.style";
+import * as Styled from "../styles/home.style";
 import { getCalendarData, getEventData } from "api/api";
 
 const Home = ({ eventData, calendarData }) => {

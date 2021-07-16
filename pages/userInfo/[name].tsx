@@ -21,7 +21,7 @@ import {
 import Layout, { HeaderLayout } from "layout/index";
 import { useUser } from "hooks/use-user";
 import { useRouter } from "next/router";
-import * as Styled from "./index.style";
+import * as Styled from "../../styles/user-info.style";
 
 const UserInfo = () => {
   const history = useRouter();
