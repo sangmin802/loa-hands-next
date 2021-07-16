@@ -15,13 +15,15 @@ import {
   Button,
   Text,
 } from "components/";
+import Layout from "layout/index";
 import { useUser } from "hooks/use-user";
-import { useParams, useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
+import { getUserData } from "api/api";
 import * as Styled from "./index.style";
 
 const UserInfo = () => {
-  const history = useHistory();
-  const { name } = useParams<{ name }>();
+  const history = useRouter();
+  const { name } = history.query;
   const userData = useUser(name);
   const [subNav, setSubNav] = useState(0);
   const [mainNav, setMainNav] = useState(0);
@@ -119,7 +121,7 @@ const UserInfo = () => {
   } = infos;
 
   return (
-    <section data-testid={userData.expeditionInfo.name}>
+    <Layout title={`유저정보 - ${name}`}>
       <Dialog dialog={dialog} setDialog={setDialog} />
       <Styled.Top>
         <Styled.ButtonContainer>
@@ -127,7 +129,10 @@ const UserInfo = () => {
             <Text>원정대 캐릭터 보기</Text>
           </Button>
         </Styled.ButtonContainer>
-        <BasicInfo userData={userData} />
+        <BasicInfo
+          data-testid={userData.expeditionInfo.name}
+          userData={userData}
+        />
       </Styled.Top>
       <Styled.Bottom>
         <Nav
@@ -203,8 +208,15 @@ const UserInfo = () => {
           </NavContent>
         </Styled.Container>
       </Styled.Bottom>
-    </section>
+    </Layout>
   );
 };
+
+// export async function getStaticProps() {
+//   const history = useRouter();
+//   const { name } = history.query;
+//   const userData = JSON.stringify(await getUserData(name));
+//   return { props: { userData } };
+// }
 
 export default React.memo(UserInfo, () => true);
