@@ -13,10 +13,7 @@ export const Main = styled.main`
   max-width: 600px;
   min-width: 310px;
   margin: 0 auto;
-  padding: 0.5rem;
   border-radius: 3px;
-
-  background: ${({ theme }) => theme.backgroundColor.darkLow};
 `;
 
 export const HeaderContainer = styled.div`
