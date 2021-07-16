@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Container = styled.section`
+  padding: 0.5rem;
+
+  background: ${({ theme }) => theme.backgroundColor.darkLow};
+`;
+
 export const Top = styled.section`
   position: relative;
   border-radius: 3px;
@@ -20,7 +26,7 @@ export const ButtonContainer = styled.div`
   background: ${({ theme }) => theme.backgroundColor.darkLow};
 `;
 
-export const Container = styled.section`
+export const Content = styled.section`
   padding: 0.5rem;
   border-radius: 0 0 5px 5px;
 
