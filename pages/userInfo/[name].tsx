@@ -42,7 +42,6 @@ const UserInfo = () => {
 };
 
 const FetchUserInfo = ({ name, history }) => {
-  console.log(name);
   const userData = useUser(name);
   const [subNav, setSubNav] = useState(0);
   const [mainNav, setMainNav] = useState(0);
