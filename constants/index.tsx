@@ -1,4 +1,4 @@
-export const BACKGROUND = `${process.env.PUBLIC_URL}/img/all.png`;
+export const BACKGROUND = `/img/all.png`;
 
 export const USER_DATA = {
   basicInfo: {
