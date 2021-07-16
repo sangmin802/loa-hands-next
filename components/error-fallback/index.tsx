@@ -22,7 +22,7 @@ const ErrorFallback = ({
         </Button>
       </Styled.ButtonContainer>
       <Styled.ImageContainer>
-        <Image src={`${process.env.PUBLIC_URL}/img/emoticon_3.gif`} />
+        <Image src="/img/emoticon_3.gif" />
       </Styled.ImageContainer>
     </>
   );
