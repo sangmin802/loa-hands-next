@@ -150,7 +150,7 @@ export default class SkillInfo implements Props {
     this.lifeSkill = [...li].map((li, index) => {
       const divideType = index < half ? "leftSkill" : "rightSkill";
       const type = "lifeSkill";
-      const backSrc = `${process.env.PUBLIC_URL}/img/lifeskill/${index}.PNG`;
+      const backSrc = `/img/lifeskill/${index}.PNG`;
 
       return {
         type,
