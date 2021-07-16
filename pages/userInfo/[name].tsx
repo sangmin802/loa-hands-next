@@ -14,17 +14,36 @@ import {
   Dialog,
   Button,
   Text,
+  SearchLoading,
+  AsyncBoundary,
+  ErrorFallback,
 } from "components/";
-import Layout from "layout/index";
+import Layout, { HeaderLayout } from "layout/index";
 import { useUser } from "hooks/use-user";
 import { useRouter } from "next/router";
-import { getUserData } from "api/api";
 import * as Styled from "./index.style";
 
 const UserInfo = () => {
   const history = useRouter();
   const { name } = history.query;
-  const userData = useUser(name);
+  console.log(name);
+  return (
+    <Layout title={`유저정보 - ${name}`} page="userInfo">
+      <AsyncBoundary
+        suspenseFallback={<SearchLoading />}
+        errorFallback={<HeaderLayout children={<ErrorFallback />} />}
+      >
+        <HeaderLayout>
+          <FetchUserInfo name={name} history={history} />
+        </HeaderLayout>
+      </AsyncBoundary>
+    </Layout>
+  );
+};
+
+const FetchUserInfo = ({ name, history }) => {
+  console.log(name);
+  const { userData } = useUser(name);
   const [subNav, setSubNav] = useState(0);
   const [mainNav, setMainNav] = useState(0);
   const [dialog, setDialog] = useState(null);
@@ -119,9 +138,8 @@ const UserInfo = () => {
     basic,
     engrave,
   } = infos;
-
   return (
-    <Layout title={`유저정보 - ${name}`}>
+    <Styled.Container>
       <Dialog dialog={dialog} setDialog={setDialog} />
       <Styled.Top>
         <Styled.ButtonContainer>
@@ -152,7 +170,7 @@ const UserInfo = () => {
             navType="sub"
           />
         ))}
-        <Styled.Container data-testid="content">
+        <Styled.Content data-testid="content">
           <NavContent type="main" selected={mainNav}>
             <NavContent selected={subNav}>
               <DoubleListContainer
@@ -206,17 +224,10 @@ const UserInfo = () => {
               ))}
             </NavContent>
           </NavContent>
-        </Styled.Container>
+        </Styled.Content>
       </Styled.Bottom>
-    </Layout>
+    </Styled.Container>
   );
 };
 
-// export async function getStaticProps() {
-//   const history = useRouter();
-//   const { name } = history.query;
-//   const userData = JSON.stringify(await getUserData(name));
-//   return { props: { userData } };
-// }
-
-export default React.memo(UserInfo, () => true);
+export default React.memo(UserInfo, () => false);
