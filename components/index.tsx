@@ -29,3 +29,4 @@ export { default as SearchLoading } from "./search-loading";
 export { default as AsyncBoundary } from "./async-boundary";
 export { default as ErrorBoundary } from "./error-boundary";
 export { default as ErrorFallback } from "./error-fallback";
+export { default as CustomSuspense } from "./custom-suspense";
