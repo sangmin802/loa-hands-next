@@ -26,7 +26,7 @@ import * as Styled from "./index.style";
 const UserInfo = () => {
   const history = useRouter();
   const { name } = history.query;
-  console.log(name);
+
   return (
     <Layout title={`유저정보 - ${name}`} page="userInfo">
       <AsyncBoundary
