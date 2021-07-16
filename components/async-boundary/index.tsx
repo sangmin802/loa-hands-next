@@ -1,15 +1,9 @@
-import {
-  PropsWithChildren,
-  ReactElement,
-  ReactNode,
-  Suspense,
-  useCallback,
-} from "react";
+import { PropsWithChildren, ReactElement, useCallback } from "react";
 import { useQueryErrorResetBoundary } from "react-query";
-import { ErrorBoundary } from "components/";
+import { ErrorBoundary, CustomSuspense } from "components/";
 
 interface IAsyncBoundary {
-  suspenseFallback: ReactNode;
+  suspenseFallback: ReactElement;
   errorFallback: ReactElement;
   children: ReactElement;
 }
@@ -26,8 +20,7 @@ const AsyncBoundary = ({
 
   return (
     <ErrorBoundary resetQuery={resetHandler} errorFallback={errorFallback}>
-      {children}
-      {/* <Suspense fallback={suspenseFallback}>{children}</Suspense> */}
+      <CustomSuspense fallback={suspenseFallback}>{children}</CustomSuspense>
     </ErrorBoundary>
   );
 };
