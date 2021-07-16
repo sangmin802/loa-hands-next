@@ -7,6 +7,12 @@ const contentType = {
   `,
 };
 
+export const Container = styled.section`
+  padding: 0.5rem;
+
+  background: ${({ theme }) => theme.backgroundColor.darkLow};
+`;
+
 export const Section = styled.section`
   margin-top: 0.7rem;
 `;
