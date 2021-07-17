@@ -20,7 +20,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script type="text/javascript">{reload}</script>
+          {/* <script type="text/javascript">{reload}</script> */}
           <link rel="stylesheet" href="/fonts/fonts.css" />
         </Head>
         <body>
